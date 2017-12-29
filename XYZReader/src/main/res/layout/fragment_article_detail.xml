@@ -7,46 +7,50 @@
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="160dp">
+        android:layout_height="@dimen/bar_layout_height"
+        android:background="@color/theme_primary">
 
         <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            app:collapsedTitleTextAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse"
+            app:expandedTitleMarginStart="72dp"
+            app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
                 android:id="@+id/photo"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:scaleType="centerCrop"
+                android:layout_height="140dp"
                 android:layout_weight="1"
-                android:contentDescription="@string/details_image" />
+                android:contentDescription="@string/details_image"
+                android:scaleType="centerCrop" />
+
+            <android.support.v7.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:contentInsetStart="72dp"
+                app:layout_collapseMode="pin" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
-
-        <TextView
-            android:id="@+id/article_title"
-            style="?android:attr/textAppearanceMedium"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-condensed"
-            android:lineSpacingMultiplier="0.9"
-            app:layout_scrollFlags="scroll|enterAlways"
-            android:paddingBottom="@dimen/detail_metabar_title_bottom_padding"
-            android:textColor="#fff"
-            android:textSize="@dimen/detail_title_text_size"
-            android:textStyle="bold" />
-        <TextView
-            android:id="@+id/article_byline"
-            style="?android:attr/textAppearanceSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#8fff" />
     </android.support.design.widget.AppBarLayout>
+
+    <TextView
+        android:id="@+id/article_byline"
+        style="?android:attr/textAppearanceSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black" />
 
     <com.example.xyzreader.ui.ObservableScrollView
         android:id="@+id/scrollview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="bottom"
+        android:nestedScrollingEnabled="true">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -59,11 +63,6 @@
                 android:background="@color/photo_placeholder">
                 <!--suppress AndroidLintContentDescription -->
 
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="112dp"
-                    android:background="@drawable/photo_background_protection" />
 
             </FrameLayout>
 
@@ -78,7 +77,6 @@
                 android:orientation="vertical">
 
 
-
                 <TextView
                     android:id="@+id/article_body"
                     style="?android:attr/textAppearanceMedium"
@@ -88,7 +86,7 @@
                     android:layout_marginRight="@dimen/detail_inner_horiz_margin"
                     android:lineSpacingMultiplier="@fraction/detail_body_line_spacing_multiplier"
                     android:paddingBottom="@dimen/detail_body_bottom_margin"
-                    android:textColor="@color/ltgray"
+                    android:textColor="@android:color/darker_gray"
                     android:textColorLink="@color/theme_accent"
                     android:textSize="@dimen/detail_body_text_size" />
 
