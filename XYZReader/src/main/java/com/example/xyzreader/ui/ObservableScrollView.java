@@ -49,7 +49,7 @@ public class ObservableScrollView extends NestedScrollView {
         if (scrollY > 0 && mCallbacks != null) {
             mCallbacks.onScrollChanged();
         }
-    }f
+    }
 
     public void setCallbacks(Callbacks listener) {
         mCallbacks = listener;

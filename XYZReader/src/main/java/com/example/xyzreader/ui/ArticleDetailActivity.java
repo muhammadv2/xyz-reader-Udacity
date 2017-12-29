@@ -39,11 +39,11 @@ public class ArticleDetailActivity extends AppCompatActivity
 
     @BindView(R.id.pager)
     ViewPager mPager;
-    private MyPagerAdapter mPagerAdapter;
+    MyPagerAdapter mPagerAdapter;
     @BindView(R.id.up_container)
-    private View mUpButtonContainer;
+    View mUpButtonContainer;
     @BindView(R.id.action_up)
-    private View mUpButton;
+    View mUpButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

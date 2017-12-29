@@ -48,11 +48,11 @@ public class ArticleListActivity extends AppCompatActivity implements
     private static final String TAG = ArticleListActivity.class.toString();
 
     @BindView(R.id.toolbar)
-    private Toolbar mToolbar;
+    Toolbar mToolbar;
     @BindView(R.id.swipe_refresh_layout)
-    private SwipeRefreshLayout mSwipeRefreshLayout;
+    SwipeRefreshLayout mSwipeRefreshLayout;
     @BindView(R.id.recycler_view)
-    private RecyclerView mRecyclerView;
+    RecyclerView mRecyclerView;
 
     @SuppressLint("SimpleDateFormat")
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.sss");
