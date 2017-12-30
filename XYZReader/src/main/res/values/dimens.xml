@@ -6,5 +6,12 @@
     <dimen name="rv_padding_bottom">16dp</dimen>
     <dimen name="bar_layout_height">240dp</dimen>
     <dimen name="label_margin">8dp</dimen>
+    <dimen name="dp4_margin">4dp</dimen>
+    <dimen name="dp16_margin">16dp</dimen>
+    <dimen name="sp18">18sp</dimen>
+    <dimen name="sp16">14sp</dimen>
+    <dimen name="dp8">8dp</dimen>
+    <dimen name="dp240_bar_height">240dp</dimen>
+    <dimen name="sp24">24sp</dimen>
     <item name="detail_body_line_spacing_multiplier" format="float" type="fraction">1.25</item>
 </resources>
