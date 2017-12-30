@@ -13,5 +13,6 @@
     <dimen name="dp8">8dp</dimen>
     <dimen name="dp240_bar_height">240dp</dimen>
     <dimen name="sp24">24sp</dimen>
+    <dimen name="dp4_elevation">4dp</dimen>
     <item name="detail_body_line_spacing_multiplier" format="float" type="fraction">1.25</item>
 </resources>
