@@ -20,6 +20,7 @@ import java.util.GregorianCalendar;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ShareCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.graphics.Palette;
@@ -242,6 +243,7 @@ public class ArticleDetailFragment extends Fragment implements
 
                         }
                     });
+
         } else {
             mRootView.setVisibility(View.GONE);
             articleTitle.setText("N/A");

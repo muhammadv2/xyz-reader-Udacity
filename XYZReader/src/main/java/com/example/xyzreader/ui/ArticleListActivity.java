@@ -11,6 +11,8 @@ import android.content.IntentFilter;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -59,6 +61,9 @@ public class ArticleListActivity extends AppCompatActivity implements
 
     @BindView(R.id.main_photo)
     ImageView mMainPhoto;
+
+    @BindView(R.id.main_root)
+    CoordinatorLayout mMainView;
 
     @SuppressLint("SimpleDateFormat")
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.sss");
@@ -128,6 +133,9 @@ public class ArticleListActivity extends AppCompatActivity implements
         StaggeredGridLayoutManager sglm =
                 new StaggeredGridLayoutManager(columnCount, StaggeredGridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(sglm);
+
+        Snackbar.make(mMainView,"Here's your articles enjoy reading :)",Snackbar.LENGTH_LONG)
+                .show();
     }
 
     @Override
@@ -163,7 +171,7 @@ public class ArticleListActivity extends AppCompatActivity implements
                 @Override
                 public void onClick(View view) {
                     startActivity(new Intent(Intent.ACTION_VIEW,
-                            ItemsContract.Items.buildItemUri(getItemId(vh.getAdapterPosition())))
+                                    ItemsContract.Items.buildItemUri(getItemId(vh.getAdapterPosition())))
                             , bundle);
                 }
             });
