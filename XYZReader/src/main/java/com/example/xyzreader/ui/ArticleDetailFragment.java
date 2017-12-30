@@ -194,8 +194,6 @@ public class ArticleDetailFragment extends Fragment implements
             return;
         }
 
-        CollapsingToolbarLayout toolbarLayout = mRootView.findViewById(R.id.photo_container);
-
         TextView articleTitle = mRootView.findViewById(R.id.article_title);
         TextView bylineView = mRootView.findViewById(R.id.article_byline);
         bylineView.setMovementMethod(new LinkMovementMethod());
