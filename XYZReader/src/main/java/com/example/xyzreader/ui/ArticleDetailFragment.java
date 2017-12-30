@@ -19,7 +19,9 @@ import java.util.GregorianCalendar;
 
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.ShareCompat;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.graphics.Palette;
 import android.text.Html;
 import android.text.format.DateUtils;
@@ -61,10 +63,10 @@ public class ArticleDetailFragment extends Fragment implements
     private int mStatusBarFullOpacityBottom;
 
     @BindView(R.id.draw_insets_frame_layout)
-    DrawInsetsFrameLayout mDrawInsetsFrameLayout;
+    CoordinatorLayout mDrawInsetsFrameLayout;
     ColorDrawable mStatusBarColorDrawable;
     @BindView(R.id.scrollview)
-    ObservableScrollView mScrollView;
+    NestedScrollView mScrollView;
     View mRootView;
     @BindView(R.id.photo_container)
     View mPhotoContainerView;
@@ -129,22 +131,6 @@ public class ArticleDetailFragment extends Fragment implements
         mRootView = inflater.inflate(R.layout.fragment_article_detail, container, false);
         ButterKnife.bind(this, mRootView);
 
-        mDrawInsetsFrameLayout.setOnInsetsCallback(new DrawInsetsFrameLayout.OnInsetsCallback() {
-            @Override
-            public void onInsetsChanged(Rect insets) {
-                mTopInset = insets.top;
-            }
-        });
-
-        mScrollView.setCallbacks(new ObservableScrollView.Callbacks() {
-            @Override
-            public void onScrollChanged() {
-                mScrollY = mScrollView.getScrollY();
-                getActivityCast().onUpButtonFloorChanged(mItemId, ArticleDetailFragment.this);
-                mPhotoContainerView.setTranslationY((int) (mScrollY - mScrollY / PARALLAX_FACTOR));
-                updateStatusBar();
-            }
-        });
 
 
         mStatusBarColorDrawable = new ColorDrawable(0);
@@ -176,7 +162,6 @@ public class ArticleDetailFragment extends Fragment implements
                     (int) (Color.blue(mMutedColor) * 0.9));
         }
         mStatusBarColorDrawable.setColor(color);
-        mDrawInsetsFrameLayout.setInsetBackground(mStatusBarColorDrawable);
     }
 
     static float progress(float v, float min, float max) {
@@ -209,21 +194,18 @@ public class ArticleDetailFragment extends Fragment implements
             return;
         }
 
-        CollapsingToolbarLayout toolbarLayout = mRootView.findViewById(R.id.collapsing_toolbar_layout);
+        CollapsingToolbarLayout toolbarLayout = mRootView.findViewById(R.id.photo_container);
 
-
+        TextView articleTitle = mRootView.findViewById(R.id.article_title);
         TextView bylineView = mRootView.findViewById(R.id.article_byline);
         bylineView.setMovementMethod(new LinkMovementMethod());
         TextView bodyView = mRootView.findViewById(R.id.article_body);
-
-
-        bodyView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Rosario-Regular.ttf"));
 
         if (mCursor != null) {
             mRootView.setAlpha(0);
             mRootView.setVisibility(View.VISIBLE);
             mRootView.animate().alpha(1);
-            toolbarLayout.setTitle(mCursor.getString(ArticleLoader.Query.TITLE));
+            articleTitle.setText(mCursor.getString(ArticleLoader.Query.TITLE));
             Date publishedDate = parsePublishedDate();
             if (!publishedDate.before(START_OF_EPOCH.getTime())) {
                 bylineView.setText(Html.fromHtml(
@@ -264,7 +246,7 @@ public class ArticleDetailFragment extends Fragment implements
                     });
         } else {
             mRootView.setVisibility(View.GONE);
-            toolbarLayout.setTitle("N/A");
+            articleTitle.setText("N/A");
             bylineView.setText("N/A");
             bodyView.setText("N/A");
         }
