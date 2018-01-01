@@ -209,10 +209,11 @@ public class ArticleListActivity extends AppCompatActivity implements
                                 + "<br/>" + " by "
                                 + mCursor.getString(ArticleLoader.Query.AUTHOR)));
             }
-            holder.thumbnailView.setImageUrl(
-                    mCursor.getString(ArticleLoader.Query.THUMB_URL),
-                    ImageLoaderHelper.getInstance(ArticleListActivity.this).getImageLoader());
-            holder.thumbnailView.setAspectRatio(mCursor.getFloat(ArticleLoader.Query.ASPECT_RATIO));
+
+           ImageLoaderHelper.setImageOnImageView(getApplicationContext()
+                   ,mCursor.getString(ArticleLoader.Query.THUMB_URL)
+                   , holder.thumbnailView);
+
         }
 
         @Override
@@ -222,15 +223,15 @@ public class ArticleListActivity extends AppCompatActivity implements
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        DynamicHeightNetworkImageView thumbnailView;
+        ImageView thumbnailView;
         TextView titleView;
         TextView subtitleView;
 
         ViewHolder(View view) {
             super(view);
-            thumbnailView = (DynamicHeightNetworkImageView) view.findViewById(R.id.thumbnail);
-            titleView = (TextView) view.findViewById(R.id.article_title);
-            subtitleView = (TextView) view.findViewById(R.id.article_subtitle);
+            thumbnailView = view.findViewById(R.id.thumbnail);
+            titleView = view.findViewById(R.id.article_title);
+            subtitleView = view.findViewById(R.id.article_subtitle);
         }
     }
 }
