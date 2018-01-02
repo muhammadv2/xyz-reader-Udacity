@@ -1,8 +1,8 @@
 = XYZ Reader one of Udacity Nanodegree projects =
 
 
-![xyz 1](https://user-images.githubusercontent.com/31315735/34487305-78a8ab96-efdc-11e7-9e7f-92bac3b96312.png)
+![xyz_1](https://user-images.githubusercontent.com/31315735/34487404-d7512b46-efdc-11e7-8346-9f1bbff2c999.png)
 
-![xyz 2](https://user-images.githubusercontent.com/31315735/34487306-794b56b6-efdc-11e7-9f5b-f899b1fdba38.png)
+![xyz_2](https://user-images.githubusercontent.com/31315735/34487405-d84cebde-efdc-11e7-9dff-6d6e747b71a2.png)
 
-![xyz 3](https://user-images.githubusercontent.com/31315735/34487310-7ac8d6e4-efdc-11e7-90b2-3bf38eecc62a.png)
+![xyz_3](https://user-images.githubusercontent.com/31315735/34487406-d9844aec-efdc-11e7-9c61-34705a983f97.png)
