@@ -54,8 +54,6 @@ public class ArticleListActivity extends AppCompatActivity implements
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    @BindView(R.id.swipe_refresh_layout)
-    SwipeRefreshLayout mSwipeRefreshLayout;
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
 
@@ -81,42 +79,6 @@ public class ArticleListActivity extends AppCompatActivity implements
 
         ButterKnife.bind(this);
 
-        if (savedInstanceState == null) {
-            refresh();
-        }
-    }
-
-    private void refresh() {
-        startService(new Intent(this, UpdaterService.class));
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        registerReceiver(mRefreshingReceiver,
-                new IntentFilter(UpdaterService.BROADCAST_ACTION_STATE_CHANGE));
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        unregisterReceiver(mRefreshingReceiver);
-    }
-
-    private boolean mIsRefreshing = false;
-
-    private BroadcastReceiver mRefreshingReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (UpdaterService.BROADCAST_ACTION_STATE_CHANGE.equals(intent.getAction())) {
-                mIsRefreshing = intent.getBooleanExtra(UpdaterService.EXTRA_REFRESHING, false);
-                updateRefreshingUI();
-            }
-        }
-    };
-
-    private void updateRefreshingUI() {
-        mSwipeRefreshLayout.setRefreshing(mIsRefreshing);
     }
 
     @Override
@@ -134,7 +96,7 @@ public class ArticleListActivity extends AppCompatActivity implements
                 new StaggeredGridLayoutManager(columnCount, StaggeredGridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(sglm);
 
-        Snackbar.make(mMainView,"Here's your articles enjoy reading :)",Snackbar.LENGTH_LONG)
+        Snackbar.make(mMainView, "Here's your articles enjoy reading :)", Snackbar.LENGTH_LONG)
                 .show();
     }
 
@@ -210,9 +172,9 @@ public class ArticleListActivity extends AppCompatActivity implements
                                 + mCursor.getString(ArticleLoader.Query.AUTHOR)));
             }
 
-           ImageLoaderHelper.setImageOnImageView(getApplicationContext()
-                   ,mCursor.getString(ArticleLoader.Query.THUMB_URL)
-                   , holder.thumbnailView);
+            ImageLoaderHelper.setImageOnImageView(getApplicationContext()
+                    , mCursor.getString(ArticleLoader.Query.THUMB_URL)
+                    , holder.thumbnailView);
 
         }
 
